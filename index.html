@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>LeadUp ChildShield | AI-Powered Climate & Child Health Early Warning</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e40af;
+            border-radius: 10px;
+        }
+
+        /* Login Container */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+            padding: 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 48px;
+            padding: 40px 32px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.5s ease-out;
+            text-align: center;
+        }
+
+        .login-logo {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px -5px rgba(30, 64, 175, 0.4);
+        }
+
+        .login-logo i {
+            font-size: 32px;
+            color: white;
+        }
+
+        .login-card h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 24px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: #fafbfc;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: white;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .demo-note {
+            margin-top: 24px;
+            padding: 12px;
+            background: #fef3c7;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #92400e;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-green {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Main App Styles */
+        .disclaimer {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 12px;
+            border-bottom: 1px solid #f59e0b;
+            color: #92400e;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-area h1 {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-area p {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        .ai-chip {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .role-selector {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 16px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .role-selector:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 16px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab:hover {
+            color: #1e40af;
+            background: #eff6ff;
+        }
+
+        .tab.active {
+            color: #1e40af;
+            border-bottom-color: #1e40af;
+            background: #eff6ff;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #1e40af;
+            padding-left: 14px;
+            color: #1e293b;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 13px;
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: #fafbfc;
+        }
+
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #1e40af;
+        }
+
+        .checkbox-group {
+            margin: 12px 0;
+            background: #fafbfc;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eef2f6;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            background: #f1f5f9;
+            border-radius: 12px;
+        }
+
+        .checkbox-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: #1e40af;
+        }
+
+        button {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
+        }
+
+        .kpi-grid {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            flex: 1;
+            background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid #eef2f6;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1e40af;
+        }
+
+        .kpi-label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .risk-high {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #b91c1c;
+        }
+
+        .risk-medium {
+            background: linear-gradient(135deg, #fed7aa, #fdba74);
+            color: #c2410c;
+        }
+
+        .risk-low {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #15803d;
+        }
+
+        .map-container {
+            background: linear-gradient(145deg, #cbd5e1 0%, #94a3b8 100%);
+            height: 220px;
+            border-radius: 24px;
+            position: relative;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+
+        .map-pin {
+            position: absolute;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 30px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .map-pin:hover {
+            transform: scale(1.08);
+        }
+
+        .location-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .location-item:hover {
+            background: #f8fafc;
+        }
+
+        .alert-item {
+            padding: 16px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 20px;
+            border-left: 4px solid;
+            cursor: pointer;
+        }
+
+        .demo-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0f172a;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 10px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-note {
+            font-size: 11px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 16px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 16px;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .simulated-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #dcfce7;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #15803d;
+        }
+
+        .live-indicator .pulse {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-green 1.5s infinite;
+        }
+
+        .sms-simulator {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 20px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 16px;
+            }
+
+            .logo-area h1 {
+                font-size: 18px;
+            }
+
+            .kpi-value {
+                font-size: 22px;
+            }
+
+            .tab {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+        }
+
+        /* Authority Alert System Styles */
+        .authority-panel {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .authority-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .authority-badge {
+            background: #f59e0b;
+            color: #1e293b;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .escalation-timer {
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 700;
+            background: #1e293b;
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .escalation-timer.critical {
+            background: #dc2626;
+            animation: pulse-red 1s infinite;
+        }
+
+        @keyframes pulse-red {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .authority-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+        }
+
+        .authority-card.acknowledged {
+            background: rgba(34, 197, 94, 0.2);
+            border-left-color: #22c55e;
+        }
+
+        .authority-card.pending {
+            border-left-color: #f59e0b;
+        }
+
+        .authority-card.escalated {
+            border-left-color: #dc2626;
+            background: rgba(220, 38, 38, 0.2);
+        }
+
+        .btn-acknowledge {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn-acknowledge:hover {
+            background: #16a34a;
+        }
+
+        .btn-verify {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .resolution-badge {
+            background: #22c55e;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .alert-flow-diagram {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+
+        .flow-step {
+            display: inline-block;
+            background: #1e40af;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 30px;
+            margin: 4px;
+            font-size: 11px;
+        }
+
+        .flow-arrow {
+            display: inline-block;
+            color: #64748b;
+            margin: 0 4px;
+        }
+
+
+        /* SMS & WhatsApp Simulation Styles */
+        .comms-panel {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .comms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .sms-badge {
+            background: #2563eb;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .whatsapp-badge {
+            background: #25D366;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .message-templates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .template-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .template-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-1px);
+        }
+
+        .conversation-log {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 16px;
+        }
+
+        .message-bubble {
+            padding: 10px 14px;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            max-width: 85%;
+            font-size: 13px;
+        }
+
+        .message-sent {
+            background: #2563eb;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-received {
+            background: #f1f5f9;
+            color: #1e293b;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 9px;
+            opacity: 0.7;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .delivery-status {
+            font-size: 9px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: 8px;
+        }
+
+        .delivered {
+            color: #22c55e;
+        }
+
+        .sent {
+            color: #f59e0b;
+        }
+
+        .failed {
+            color: #dc2626;
+        }
+
+        .recipient-selector {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .broadcast-stats {
+            background: #e0f2fe;
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-card">
+            <div class="login-logo"><i class="fas fa-shield-alt"></i></div>
+            <h1>LeadUp ChildShield</h1>
+            <p>AI-Powered Climate & Child Health Early Warning</p>
+            <div class="input-group"><label><i class="fas fa-envelope"></i> Email</label><input type="email"
+                    id="loginEmail" placeholder="Enter any email (demo mode)"></div>
+            <div class="input-group"><label><i class="fas fa-lock"></i> Password</label><input type="password"
+                    id="loginPassword" placeholder="Enter any password"></div>
+            <button class="login-btn" onclick="handleLogin()"><i class="fas fa-arrow-right-to-bracket"></i> Sign In
+                (Demo)</button>
+            <div class="demo-note"><i class="fas fa-flask"></i> Demo Mode — Any email/password works.<br>For grant
+                application only.</div>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="mainApp" style="display: none;">
+        <div class="disclaimer"><i class="fas fa-flask"></i> DEMONSTRATION PROTOTYPE — All features simulated for grant
+            application. Production requires funded development.</div>
+
+        <div class="header">
+            <div class="logo-area">
+                <h1><i class="fas fa-shield-alt"></i> LeadUp ChildShield <span class="ai-chip"><i
+                            class="fas fa-microchip"></i> AI-Powered</span></h1>
+                <p><i class="fas fa-map-marker-alt"></i> Protecting Nigerian Children from Climate Risks | Full System
+                    Simulation</p>
+            </div>
+            <select id="roleSelector" class="role-selector">
+                <option value="volunteer">🤝 Community Volunteer</option>
+                <option value="phc">🏥 PHC Worker</option>
+                <option value="school">📚 School Representative</option>
+            </select>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="report"><i class="fas fa-edit"></i> Report</button>
+            <button class="tab" data-tab="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</button>
+            <button class="tab" data-tab="alerts"><i class="fas fa-bell"></i> Alerts</button>
+            <button class="tab" data-tab="ml"><i class="fas fa-brain"></i> ML Insights</button>
+            <button class="tab" data-tab="authority"><i class="fas fa-building"></i> Authority</button>
+            <!-- ADD THIS LINE -->
+            <button class="tab" data-tab="comms"><i class="fas fa-comment-dots"></i> Communications</button>
+        </div>
+    </div>
+
+    <div class="content" id="content"></div>
+    <div class="demo-badge"><i class="fas fa-robot"></i> Full Demo Simulation | <i class="fas fa-database"></i> Local
+        Storage</div>
+    </div>
+
+    <script>
+        // ============ LOGIN HANDLER ============
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (email && password) {
+                localStorage.setItem('childshield_user', JSON.stringify({ email: email, loginTime: new Date().toISOString() }));
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                loadReports();
+                loadAuthorityAlerts();
+                render();
+            } else {
+                alert('⚠️ Demo Mode: Please enter any email and password to continue.');
+            }
+        }
+
+        function checkExistingLogin() {
+            const user = localStorage.getItem('childshield_user');
+            if (user) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                loadReports();
+                loadAuthorityAlerts();  // LOAD AUTHORITY ALERTS ON LOGIN
+                loadConversations();  // LOAD CONVERSATIONS ON LOGIN
+                loadBroadcastHistory();
+                render();
+            }
+        }
+
+        // ============ DATA ============
+        let reports = [];
+        let mlModelVersion = "v0.3-alpha";
+        let authorityAlerts = [];
+        function loadReports() {
+            const saved = localStorage.getItem('childshield_reports_aiml');
+            if (saved) reports = JSON.parse(saved);
+        }
+
+        function loadAuthorityAlerts() {
+            const saved = localStorage.getItem('childshield_authority_alerts');
+            if (saved) authorityAlerts = JSON.parse(saved);
+        }
+
+        function saveAuthorityAlerts() {
+            localStorage.setItem('childshield_authority_alerts', JSON.stringify(authorityAlerts));
+        }
+
+        function saveReports() {
+            localStorage.setItem('childshield_reports_aiml', JSON.stringify(reports));
+        }
+
+        // ============ SIMULATED AI/ML ENGINE ============
+        function simulateMLPatternRecognition(location, currentIssues) {
+            const historicalReports = reports.filter(r => r.location === location);
+            let patternScore = 0;
+            let detectedPatterns = [];
+
+            const floodingReports = historicalReports.filter(r => r.issues.flooding === true);
+            const diarrheaAfterFlood = historicalReports.filter(r => r.issues.diarrhea === true && floodingReports.some(f => Math.abs(new Date(f.timestamp) - new Date(r.timestamp)) < 5 * 24 * 60 * 60 * 1000));
+            if (currentIssues.flooding && diarrheaAfterFlood.length > 0) { patternScore += 20; detectedPatterns.push("Flooding → Diarrhea outbreak pattern detected"); }
+
+            const heatAbsenteeism = historicalReports.filter(r => r.issues.extremeHeat === true && r.issues.absenteeism === true).length;
+            if (currentIssues.extremeHeat && currentIssues.absenteeism && heatAbsenteeism > 0) { patternScore += 15; detectedPatterns.push("Heat stress → School absenteeism correlation found"); }
+
+            const waterIssues = historicalReports.filter(r => r.issues.unsafeWater === true);
+            const healthIssues = historicalReports.filter(r => r.issues.diarrhea === true || r.issues.malaria === true);
+            const waterHealthCorrelation = waterIssues.filter(w => healthIssues.some(h => Math.abs(new Date(w.timestamp) - new Date(h.timestamp)) < 7 * 24 * 60 * 60 * 1000)).length;
+            if (currentIssues.unsafeWater && waterHealthCorrelation > 2) { patternScore += 25; detectedPatterns.push("Water contamination → Disease cluster (ML confidence: 78%)"); }
+
+            return { patternScore, detectedPatterns };
+        }
+
+        function simulatePredictiveRisk(currentScore, location, issues) {
+            let predictedIncrease = 0, predictionReason = "";
+            const activeRiskCount = Object.values(issues).filter(v => v === true).length;
+            if (activeRiskCount >= 4) { predictedIncrease += 15; predictionReason = "Multiple risk factors → AI predicts escalation within 72 hours"; }
+            else if (activeRiskCount >= 3) { predictedIncrease += 8; predictionReason = "Combined risk signals → escalation likely within 5 days"; }
+
+            const locationHistory = reports.filter(r => r.location === location);
+            if (locationHistory.length > 5) {
+                const avgHistoricalRisk = locationHistory.reduce((sum, r) => sum + r.riskScore, 0) / locationHistory.length;
+                if (avgHistoricalRisk > 60) { predictedIncrease += 10; predictionReason = "Historical vulnerability detected (ML weight: +10)"; }
+            }
+            const learningBonus = Math.min(Math.floor(reports.length / 20), 5);
+            return { predictedScore: Math.min(currentScore + predictedIncrease + learningBonus, 100), predictionReason: predictionReason || "Risk levels currently stable", learningBonus: learningBonus };
+        }
+
+        function calculateAIScore(issues, location) {
+            let baseScore = 0;
+            if (issues.flooding) baseScore += 35;
+            if (issues.extremeHeat) baseScore += 20;
+            if (issues.unsafeWater) baseScore += 25;
+            if (issues.diarrhea) baseScore += 30;
+            if (issues.malaria) baseScore += 15;
+            if (issues.absenteeism) baseScore += 20;
+
+            const { patternScore, detectedPatterns } = simulateMLPatternRecognition(location, issues);
+            const { predictedScore, predictionReason, learningBonus } = simulatePredictiveRisk(baseScore + patternScore, location, issues);
+            const mlConfidence = Math.min(65 + Math.floor(reports.length / 10), 95);
+
+            return { riskScore: Math.min(predictedScore, 100), baseScore: baseScore, patternScore: patternScore, learningBonus: learningBonus, mlConfidence: mlConfidence, detectedPatterns: detectedPatterns, predictionReason: predictionReason };
+        }
+
+        function getRiskLevel(score) { if (score >= 70) return 'HIGH'; if (score >= 40) return 'MEDIUM'; return 'LOW'; }
+
+        window.submitReport = function () {
+            const issues = {
+                flooding: document.getElementById('cb_flooding')?.checked || false,
+                extremeHeat: document.getElementById('cb_heat')?.checked || false,
+                unsafeWater: document.getElementById('cb_water')?.checked || false,
+                diarrhea: document.getElementById('cb_diarrhea')?.checked || false,
+                malaria: document.getElementById('cb_malaria')?.checked || false,
+                absenteeism: document.getElementById('cb_absenteeism')?.checked || false
+            };
+            const location = document.getElementById('reportLocation')?.value || 'Oyo';
+            const notes = document.getElementById('reportNotes')?.value || '';
+            const aiResult = calculateAIScore(issues, location);
+            const riskLevel = getRiskLevel(aiResult.riskScore);
+
+            reports.unshift({ id: Date.now(), location, issues, notes, riskScore: aiResult.riskScore, baseScore: aiResult.baseScore, patternScore: aiResult.patternScore, mlConfidence: aiResult.mlConfidence, riskLevel, timestamp: new Date().toISOString(), mlInsights: { patternsFound: aiResult.detectedPatterns, prediction: aiResult.predictionReason, learningBonus: aiResult.learningBonus } });
+            saveReports();
+
+            let aiMessage = `🧠 AI-Powered Risk Assessment\n\n📍 Location: ${location}\n🎯 Risk Score: ${aiResult.riskScore}/100 (${riskLevel})\n📊 ML Confidence: ${aiResult.mlConfidence}%\n\n📈 Analysis:\n• Base risk: ${aiResult.baseScore} points\n`;
+            if (aiResult.patternScore > 0) aiMessage += `• Pattern detection: +${aiResult.patternScore} points\n`;
+            if (aiResult.learningBonus > 0) aiMessage += `• Model learning: +${aiResult.learningBonus} points\n`;
+            aiMessage += `• ${aiResult.predictionReason}\n\n`;
+            if (aiResult.detectedPatterns.length > 0) { aiMessage += `🔍 Patterns detected:\n`; aiResult.detectedPatterns.forEach(p => aiMessage += `  ✓ ${p}\n`); }
+            aiMessage += `\n⚠️ Demo simulation — production model uses real-time data.`;
+            alert(aiMessage);
+
+            document.getElementById('cb_flooding').checked = false; document.getElementById('cb_heat').checked = false; document.getElementById('cb_water').checked = false;
+            document.getElementById('cb_diarrhea').checked = false; document.getElementById('cb_malaria').checked = false; document.getElementById('cb_absenteeism').checked = false;
+            document.getElementById('reportNotes').value = '';
+            render();
+        };
+
+        // ============ SIMULATIONS ============
+        window.exportReportsToCSV = function () {
+            if (reports.length === 0) { alert("No reports to export."); return; }
+            let csvContent = "ID,Location,Risk Score,Risk Level,Flooding,Extreme Heat,Unsafe Water,Diarrhea,Malaria,Absenteeism,Notes,Timestamp\n";
+            reports.forEach(r => { csvContent += `${r.id},${r.location},${r.riskScore},${r.riskLevel},${r.issues.flooding ? "Yes" : "No"},${r.issues.extremeHeat ? "Yes" : "No"},${r.issues.unsafeWater ? "Yes" : "No"},${r.issues.diarrhea ? "Yes" : "No"},${r.issues.malaria ? "Yes" : "No"},${r.issues.absenteeism ? "Yes" : "No"},"${r.notes.replace(/"/g, '""')}",${r.timestamp}\n`; });
+            const blob = new Blob([csvContent], { type: 'text/csv' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `leadup_reports_${new Date().toISOString().slice(0, 19)}.csv`; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+            alert(`📊 Exported ${reports.length} reports to CSV.\n\n⚠️ Demo: Real version includes API access and scheduled exports.`);
+        };
+
+        window.printReport = function () {
+            if (reports.length === 0) { alert("No reports to print."); return; }
+            const latestReport = reports[0];
+            const printContent = `<!DOCTYPE html><html><head><title>LeadUp ChildShield Report</title><style>body{font-family:Arial;padding:40px;}h1{color:#1e40af;}.report-box{border:1px solid #ccc;padding:20px;border-radius:10px;margin-top:20px;}.risk-high{color:red;}.risk-medium{color:orange;}.risk-low{color:green;}.footer{margin-top:40px;font-size:10px;color:gray;text-align:center;}</style></head><body><h1>LeadUp ChildShield</h1><p>Climate & Child Health Early Warning Report</p><div class="report-box"><h2>Latest Report: ${latestReport.location}</h2><p><strong>Risk Score:</strong> <span class="risk-${latestReport.riskLevel.toLowerCase()}">${latestReport.riskScore}/100 (${latestReport.riskLevel})</span></p><p><strong>ML Confidence:</strong> ${latestReport.mlConfidence}%</p><p><strong>Issues:</strong></p><ul>${Object.entries(latestReport.issues).filter(i => i[1]).map(i => `<li>${i[0]}</li>`).join('')}</ul><p><strong>Notes:</strong> ${latestReport.notes || "None"}</p><p><strong>Timestamp:</strong> ${new Date(latestReport.timestamp).toLocaleString()}</p></div><div class="footer">Demo report from LeadUp ChildShield prototype.</div></body></html>`;
+            const printWindow = window.open('', '_blank'); printWindow.document.write(printContent); printWindow.document.close(); printWindow.print();
+            alert("📄 Report ready for printing/saving as PDF.\n\n⚠️ Real version includes WhatsApp sharing.");
+        };
+
+        window.simulatePushNotification = function () {
+            if (!localStorage.getItem('notification_permission_demo')) {
+                const granted = confirm("🔔 DEMO: Allow notifications?\n\n(This is a simulation)");
+                if (granted) { localStorage.setItem('notification_permission_demo', 'granted'); alert("✅ Demo permission granted.\n\n⚠️ Real push requires Firebase."); }
+                return;
+            }
+            const notificationDiv = document.createElement('div');
+            notificationDiv.style.cssText = "position:fixed; top:20px; right:20px; background:#1e40af; color:white; padding:16px 20px; border-radius:16px; z-index:1000; animation:slideIn 0.3s; max-width:300px;";
+            notificationDiv.innerHTML = "<div style=\"display:flex; gap:12px;\"><i class=\"fas fa-bell\"></i><div><strong>LeadUp ChildShield</strong><div style=\"font-size:12px;\">⚠️ High heat alert. Keep children hydrated.</div><div style=\"font-size:10px; opacity:0.7;\">Demo notification</div></div></div>";
+            document.body.appendChild(notificationDiv);
+            setTimeout(() => notificationDiv.remove(), 4000);
+            alert("🔔 SIMULATED PUSH NOTIFICATION\n\n⚠️ Real push requires Firebase Cloud Messaging.");
+        };
+
+        let currentDateFilter = 'all';
+        window.filterReportsByDate = function (range) {
+            currentDateFilter = range;
+            const now = new Date();
+            let filtered = [...reports];
+            if (range === 'week') { const weekAgo = new Date(now.setDate(now.getDate() - 7)); filtered = reports.filter(r => new Date(r.timestamp) > weekAgo); }
+            else if (range === 'month') { const monthAgo = new Date(now.setMonth(now.getMonth() - 1)); filtered = reports.filter(r => new Date(r.timestamp) > monthAgo); }
+            const totalRisk = filtered.reduce((sum, r) => sum + r.riskScore, 0);
+            const avgRisk = filtered.length > 0 ? (totalRisk / filtered.length).toFixed(1) : 0;
+            alert(`📊 Date Filter: ${range === 'week' ? 'Last 7 days' : range === 'month' ? 'Last 30 days' : 'All time'}\nReports: ${filtered.length}\nAvg Risk: ${avgRisk}\n\n⚠️ Demo.`);
+            render();
+        };
+
+        window.sendSimulatedSMS = function (recipientType, message) {
+            alert(`📱 SIMULATED SMS\n\nTo: ${recipientType === 'community' ? '+234 801 234 5678' : '+234 802 345 6789'}\nMessage: ${message}\n\n⚠️ Real SMS requires Twilio API.`);
+        };
+
+        window.addSimulatedWhatsApp = function () {
+            alert(`💬 SIMULATED WHATSAPP\n\nMessage would appear in WhatsApp chat.\n\n⚠️ Real WhatsApp requires Meta API approval.`);
+        };
+
+        let simulatedWeatherData = { oyo: { temp: 34, humidity: 65, airQuality: "Moderate" }, lagos: { temp: 31, humidity: 78, airQuality: "Poor" }, fct: { temp: 38, humidity: 45, airQuality: "Hazardous" } };
+        window.refreshLiveData = function () {
+            const locations = ['oyo', 'lagos', 'fct'];
+            locations.forEach(loc => { simulatedWeatherData[loc].temp += (Math.random() - 0.5) * 2; simulatedWeatherData[loc].temp = Math.round(simulatedWeatherData[loc].temp); });
+            const liveDataDiv = document.getElementById('liveDataDisplay');
+            if (liveDataDiv) { liveDataDiv.innerHTML = `<div style="display:flex; gap:12px; flex-wrap:wrap;"><div><strong>Oyo:</strong> ${simulatedWeatherData.oyo.temp}°C | AQI: ${simulatedWeatherData.oyo.airQuality}</div><div><strong>Lagos:</strong> ${simulatedWeatherData.lagos.temp}°C | AQI: ${simulatedWeatherData.lagos.airQuality}</div><div><strong>FCT:</strong> ${simulatedWeatherData.fct.temp}°C | AQI: ${simulatedWeatherData.fct.airQuality}</div></div><div class="simulated-badge" style="margin-top:8px;">Updated: ${new Date().toLocaleTimeString()}</div>`; }
+            alert(`📡 Live data refreshed.\n\n⚠️ Real-time data would come from NIMET/NOAA APIs.`);
+        };
+
+        let simulatedAPIStatus = { weatherAPI: { status: "online", latency: "234ms" }, healthAPI: { status: "online", latency: "156ms" }, smsGateway: { status: "simulated" }, mlModel: { status: "training", accuracy: "78%" } };
+        window.refreshAPIStatus = function () {
+            simulatedAPIStatus.mlModel.accuracy = (75 + Math.floor(Math.random() * 15)) + "%";
+            const statusHtml = `<div style="display:grid; gap:10px;"><div style="display:flex; justify-content:space-between;"><span>🌤️ Weather API:</span><span style="color:#10b981;">● ${simulatedAPIStatus.weatherAPI.status}</span><span>${simulatedAPIStatus.weatherAPI.latency}</span></div><div style="display:flex; justify-content:space-between;"><span>🏥 Health API:</span><span style="color:#10b981;">● ${simulatedAPIStatus.healthAPI.status}</span><span>${simulatedAPIStatus.healthAPI.latency}</span></div><div style="display:flex; justify-content:space-between;"><span>📱 SMS Gateway:</span><span style="color:#f59e0b;">● ${simulatedAPIStatus.smsGateway.status}</span><span>(Demo)</span></div><div style="display:flex; justify-content:space-between;"><span>🧠 ML Model:</span><span style="color:#8b5cf6;">● ${simulatedAPIStatus.mlModel.status}</span><span>Acc: ${simulatedAPIStatus.mlModel.accuracy}</span></div></div><div class="simulated-badge" style="margin-top:10px;">Last Sync: ${new Date().toLocaleTimeString()}</div>`;
+            const statusDiv = document.getElementById('apiStatusDisplay');
+            if (statusDiv) statusDiv.innerHTML = statusHtml;
+            if (document.getElementById('apiStatusDisplay')) alert(`📡 API Status: Weather ✅ | Health ✅ | SMS ⚠️ | ML ${simulatedAPIStatus.mlModel.accuracy}\n\n⚠️ Real version connects to NIMET, NCDC, Twilio.`);
+        };
+
+        window.addNewLocation = function () {
+            const newLocation = document.getElementById('newLocationName')?.value;
+            if (!newLocation) { alert("Please enter a location name"); return; }
+            const customLocations = JSON.parse(localStorage.getItem('customLocations') || '[]');
+            customLocations.push({ name: newLocation, risk: 'MEDIUM', score: 45, alerts: 3 });
+            localStorage.setItem('customLocations', JSON.stringify(customLocations));
+            alert(`✅ Location added: ${newLocation}\n\n⚠️ Production allows dynamic LGA addition.`);
+            document.getElementById('newLocationName').value = '';
+            render();
+        };
+
+        let simulatedUserActivity = [{ user: "Amina (Volunteer, Oyo)", action: "Reported flooding", time: "2 min ago", region: "Oyo" }, { user: "Dr. Okonkwo (PHC, Lagos)", action: "Issued health alert", time: "15 min ago", region: "Lagos" }, { user: "Mr. Bello (School, FCT)", action: "Reported 12 absent students", time: "1 hour ago", region: "FCT" }];
+        window.addSimulatedActivity = function () {
+            simulatedUserActivity.unshift({ user: "Current User (Demo)", action: "Submitted climate-health report", time: "Just now", region: document.getElementById('reportLocation')?.value || "Unknown" });
+            const feedDiv = document.getElementById('activityFeed');
+            if (feedDiv) { feedDiv.innerHTML = simulatedUserActivity.slice(0, 5).map(a => ` <div class="location-item" style="border-left:3px solid #1e40af; margin-bottom:8px;"><div><strong>${a.user}</strong><br><span style="font-size:12px;">${a.action} • ${a.region}</span><div style="font-size:10px; color:#94a3b8;">${a.time}</div></div><span class="simulated-badge">Demo</span></div>`).join(''); }
+        };
+
+        // ============ RENDER FUNCTIONS ============
+        const riskLocations = [{ name: 'Oyo State', risk: 'HIGH', score: 82, alerts: 12, aiWeight: 0.85 }, { name: 'Lagos State', risk: 'MEDIUM', score: 55, alerts: 6, aiWeight: 0.62 }, { name: 'Ondo State', risk: 'HIGH', score: 78, alerts: 9, aiWeight: 0.79 }, { name: 'Ogun State', risk: 'MEDIUM', score: 48, alerts: 5, aiWeight: 0.58 }, { name: 'FCT', risk: 'LOW', score: 22, alerts: 2, aiWeight: 0.31 }, { name: 'Ebonyi State', risk: 'MEDIUM', score: 40, alerts: 4, aiWeight: 0.50 }, { name: 'Taraba State', risk: 'LOW', score: 30, alerts: 3, aiWeight: 0.40 }, { name: 'Plateau State', risk: 'HIGH', score: 75, alerts: 8, aiWeight: 0.70 }, { name: 'Kogi State', risk: 'MEDIUM', score: 50, alerts: 5, aiWeight: 0.60 }];
+        const mockAlerts = [{ id: 1, title: '🌊 Flood Warning', location: 'Oyo', message: 'Heavy rainfall expected. Move children to higher ground.', priority: 'HIGH', action: 'Evacuate low-lying areas', mlConfidence: 94 }, { id: 2, title: '🔥 Extreme Heat Alert', location: 'Lagos', message: 'Temperatures reaching 40°C. Keep children hydrated.', priority: 'HIGH', action: 'Distribute water', mlConfidence: 88 }, { id: 3, title: '💧 Water Safety Notice', location: 'Ondo', message: 'Unsafe water reported.', priority: 'MEDIUM', action: 'Boil water', mlConfidence: 76 }, { id: 4, title: '🦠 Disease Outbreak', location: 'FCT', message: 'Increased diarrhea cases.', priority: 'MEDIUM', action: 'ORS distribution', mlConfidence: 82 }, { id: 5, title: '📢 Health Reminder', location: 'All', message: 'Handwashing prevents diseases.', priority: 'LOW', action: 'Share', mlConfidence: 65 }];
+
+        function renderReportTab() {
+            return `<div class="card"><div class="card-title"><i class="fas fa-file-alt"></i> AI-Enhanced Report <span class="ai-badge"><i class="fas fa-microchip"></i> ML Active</span></div>
+            <label><i class="fas fa-map-marker-alt"></i> Location</label><select id="reportLocation"><option>Oyo</option><option>Lagos</option><option>Ondo</option><option>Ogun</option><option>FCT</option><option>Ebonyi</option><option>Taraba</option><option>Plateau</option><option>Kogi</option></select>
+            <label><i class="fas fa-exclamation-triangle"></i> Observed Issues</label>
+            <div class="checkbox-group"><div class="checkbox-item"><input type="checkbox" id="cb_flooding"> <i class="fas fa-water"></i> Flooding observed</div><div class="checkbox-item"><input type="checkbox" id="cb_heat"> <i class="fas fa-sun"></i> Extreme heat</div><div class="checkbox-item"><input type="checkbox" id="cb_water"> <i class="fas fa-tint"></i> Unsafe water source</div><div class="checkbox-item"><input type="checkbox" id="cb_diarrhea"> <i class="fas fa-stethoscope"></i> Rising diarrhea cases</div><div class="checkbox-item"><input type="checkbox" id="cb_malaria"> <i class="fas fa-bug"></i> Increased malaria</div><div class="checkbox-item"><input type="checkbox" id="cb_absenteeism"> <i class="fas fa-school"></i> School absenteeism</div></div>
+            <label><i class="fas fa-pen"></i> Additional Notes</label><textarea id="reportNotes" rows="3" placeholder="e.g., 5 children absent this week..."></textarea>
+            <button onclick="submitReport()"><i class="fas fa-brain"></i> Submit with AI Analysis</button>
+            <div class="info-note"><i class="fas fa-robot"></i> AI analyzes patterns. ${reports && reports.length > 0 ? `ML trained on ${reports.length} reports.` : 'Submit first report to initialize ML.'}</div></div>`;
+        }
+
+        function renderDashboardTab() {
+            const totalReports = reports.length, highRiskLocations = riskLocations.filter(l => l.risk === 'HIGH').length, totalActiveAlerts = riskLocations.reduce((sum, l) => sum + l.alerts, 0);
+            const avgMLConfidence = reports.length > 0 ? (reports.reduce((sum, r) => sum + (r.mlConfidence || 75), 0) / reports.length).toFixed(1) : 0;
+            return `<div class="kpi-grid"><div class="kpi-card"><div class="kpi-icon"><i class="fas fa-clipboard-list"></i></div><div class="kpi-value">${totalReports}</div><div class="kpi-label">Reports</div></div>
+            <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-exclamation-triangle"></i></div><div class="kpi-value">${highRiskLocations}</div><div class="kpi-label">High Risk Areas</div></div>
+            <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-bell"></i></div><div class="kpi-value">${totalActiveAlerts}</div><div class="kpi-label">Active Alerts</div></div>
+            <div class="kpi-card"><div class="kpi-icon"><i class="fas fa-brain"></i></div><div class="kpi-value">${avgMLConfidence}%</div><div class="kpi-label">ML Confidence</div></div></div>
+            
+            <div class="card"><div class="card-title"><i class="fas fa-calendar-alt"></i> Date Range Filter <span class="simulated-badge">Demo</span></div><div style="display:flex; gap:8px;"><button onclick="filterReportsByDate('all')" style="background:#475569; margin:0;">All</button><button onclick="filterReportsByDate('week')" style="background:#475569; margin:0;">Last 7 Days</button><button onclick="filterReportsByDate('month')" style="background:#475569; margin:0;">Last 30 Days</button></div></div>
+            
+            <div class="card"><div class="card-title"><i class="fas fa-cloud-sun"></i> Simulated Live Data Feed <span class="live-indicator"><span class="pulse"></span> Live Demo</span><span class="simulated-badge">Simulated API</span></div><div id="liveDataDisplay"></div><button onclick="refreshLiveData()" style="margin-top:12px; background:#475569;"><i class="fas fa-sync-alt"></i> Simulate Data Refresh</button><div class="info-note">⚠️ Simulated weather data. Production uses NIMET/NOAA APIs.</div></div>
+            
+            <div class="card"><div class="card-title"><i class="fas fa-map"></i> AI Risk Map <span class="ai-badge">ML-Powered</span></div><div class="map-container" id="mapContainer"></div><div class="info-note">Tap pins for ML insights</div></div>
+            
+            <div class="card"><div class="card-title">AI Risk Assessment by Location</div>${riskLocations.map(loc => ` <div class="location-item" onclick="alert('${loc.name}\\nRisk: ${loc.risk} (${loc.score}/100)\\nAlerts: ${loc.alerts}')"><span><i class="fas fa-map-marker-alt"></i> ${loc.name}</span><span class="risk-badge risk-${loc.risk.toLowerCase()}">${loc.risk} ${loc.score}</span></div>`).join('')}</div>
+            
+            <div class="card"><div class="card-title"><i class="fas fa-users"></i> Multi-User Activity Feed <span class="simulated-badge">Demo Coordination</span></div><div id="activityFeed">${simulatedUserActivity.map(a => ` <div class="location-item" style="border-left:3px solid #1e40af; margin-bottom:8px;"><div><strong>${a.user}</strong><span style="font-size:12px;">${a.action} • ${a.region}</span><div style="font-size:10px;">${a.time}</div></div><span class="simulated-badge">Demo</span></div>`).join('')}</div><button onclick="addSimulatedActivity()" style="margin-top:8px; background:#475569;"><i class="fas fa-plus"></i> Simulate New Report</button><div class="info-note">⚠️ Shows multi-user coordination simulation.</div></div>
+            
+            <div class="card"><div class="card-title"><i class="fas fa-map-marker-plus"></i> Add New Location <span class="simulated-badge">Scalability Demo</span></div><input type="text" id="newLocationName" placeholder="e.g., Benin City, Jos, Enugu"><button onclick="addNewLocation()" style="margin-top:8px; background:#475569;"><i class="fas fa-plus"></i> Add New LGA</button><div class="info-note">⚠️ Demo: Shows how new LGAs can be added.</div></div>
+            
+                <div class="card"><div class="card-title"><i class="fas fa-download"></i> Data Export <span class="simulated-badge">Open Data</span></div><button onclick="exportReportsToCSV()" style="background:#059669;"><i class="fas fa-file-csv"></i> Export Reports as CSV</button><div class="info-note">⚠️ Exports all reports. Production includes API endpoints.</div></div>`;
+        }
+
+        function renderAlertsTab() {
+            const role = document.getElementById('roleSelector')?.value || 'volunteer';
+            return `${role === 'phc' ? '<div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);"><div class="card-title"><i class="fab fa-whatsapp"></i> Simulated Communication Center <span class="simulated-badge">Demo</span></div><button onclick="sendSimulatedSMS(\'community\', \'FLOOD ALERT: Move children to higher ground.\')" style="background:#2563eb; margin-bottom:8px;"><i class="fas fa-sms"></i> Send Demo SMS</button><button onclick="addSimulatedWhatsApp()" style="background:#25D366;"><i class="fab fa-whatsapp"></i> Send Demo WhatsApp</button><div class="info-note">⚠️ Real SMS/WhatsApp requires Twilio/Meta API.</div></div>' : ''}
+            <div class="card"><div class="card-title"><i class="fas fa-bell"></i> Push Notifications Demo <span class="simulated-badge">Simulated</span></div><button onclick="simulatePushNotification()" style="background:#0284c7;"><i class="fas fa-bell"></i> Simulate Push Notification</button><div class="info-note">⚠️ Real push requires Firebase Cloud Messaging.</div></div>
+            <div class="card"><div class="card-title"><i class="fas fa-print"></i> Share Report <span class="simulated-badge">Demo</span></div><button onclick="printReport()" style="background:#7c3aed;"><i class="fas fa-print"></i> Print / Save as PDF</button><div class="info-note">⚠️ Generates printable report. Production includes WhatsApp sharing.</div></div>
+            ${mockAlerts.map(alert => `<div class="alert-item" style="border-left-color: ${alert.priority === 'HIGH' ? '#dc2626' : alert.priority === 'MEDIUM' ? '#ea580c' : '#16a34a'}" onclick="alert('${alert.title}\\n${alert.location}: ${alert.message}\\nAction: ${alert.action}\\nML Confidence: ${alert.mlConfidence}%\\n⚠️ Demo alert.')"><div style="display:flex; justify-content:space-between;"><span style="font-weight:600;">${alert.title}</span><span class="risk-badge risk-${alert.priority.toLowerCase()}">${alert.priority}</span></div><div style="font-size:13px; margin-top:6px;">${alert.location}: ${alert.message}</div><div style="font-size:11px; margin-top:6px;">Action: ${alert.action}</div></div>`).join('')}
+            <div class="info-note">🔔 Alerts prioritized by ML confidence. Full version includes real-time push.</div>`;
+        }
+
+        function renderMLInsightsTab() {
+            const totalReports = reports.length, modelAccuracy = Math.min(65 + Math.floor(totalReports / 5), 92);
+            let topPattern = totalReports < 3 ? "No patterns yet. Submit 3+ reports." : "Flooding → Diarrhea outbreak pattern detected";
+            return `<div class="card"><div class="card-title"><i class="fas fa-microchip"></i> Machine Learning Status <span class="ai-badge">Active</span></div>
+            <div style="margin-bottom:12px;">Model Version: v0.3-alpha</div><div style="margin-bottom:12px;">Training Data: ${totalReports} reports</div><div style="margin-bottom:12px;">Model Accuracy: ${modelAccuracy}%</div>
+            <div style="background:#f0fdf4; padding:12px; border-radius:16px; margin:12px 0;"><strong>Top Pattern:</strong> ${topPattern}</div>
+            <div style="background:#eff6ff; padding:12px; border-radius:16px;"><strong>7-Day Prediction:</strong> ${totalReports < 3 ? 'Insufficient data' : 'High risk in Oyo and FCT within 5 days (78% probability)'}</div></div>
+            <div class="card"><div class="card-title"><i class="fas fa-server"></i> System Integration Status <span class="simulated-badge">Demo API Status</span></div><div id="apiStatusDisplay"></div><button onclick="refreshAPIStatus()" style="margin-top:12px; background:#475569;"><i class="fas fa-sync-alt"></i> Simulate API Check</button><div class="info-note">⚠️ Shows integration with NIMET, NCDC, Twilio APIs.</div></div>
+            <div class="card"><div class="card-title">How Our AI Works</div><div style="font-size:13px;">Pattern recognition, predictive analytics, continuous learning, and location-based vulnerability weights.</div><div class="info-note">Simulated ML — production uses real-time data.</div></div>`;
+        }
+
+        function addMapPins() {
+            const mapDiv = document.getElementById('mapContainer');
+            if (!mapDiv) return;
+            const existingPins = mapDiv.querySelectorAll('.map-pin');
+            existingPins.forEach(pin => pin.remove());
+            const positions = [{ left: '25%', top: '35%', loc: riskLocations[0] }, { left: '15%', top: '65%', loc: riskLocations[1] }, { left: '35%', top: '55%', loc: riskLocations[2] }, { left: '25%', top: '60%', loc: riskLocations[3] }, { left: '50%', top: '45%', loc: riskLocations[4] }, { left: '65%', top: '65%', loc: riskLocations[5] }, { left: '80%', top: '45%', loc: riskLocations[6] }, { left: '65%', top: '35%', loc: riskLocations[7] }, { left: '45%', top: '55%', loc: riskLocations[8] }];
+            positions.forEach(pos => { const pin = document.createElement('div'); pin.className = 'map-pin'; pin.style.left = pos.left; pin.style.top = pos.top; pin.style.backgroundColor = pos.loc.risk === 'HIGH' ? '#dc2626' : pos.loc.risk === 'MEDIUM' ? '#ea580c' : '#10b981'; pin.innerHTML = `<i class="fas fa-map-pin"></i> ${pos.loc.risk}`; pin.onclick = () => alert(`${pos.loc.name}\nRisk: ${pos.loc.risk}\nML Confidence: ${pos.loc.aiWeight * 100}%`); mapDiv.appendChild(pin); });
+        }
+
+        let currentTab = 'report';
+        function render() {
+            const container = document.getElementById('content');
+            if (!container) return;
+            if (currentTab === 'report') container.innerHTML = renderReportTab();
+            else if (currentTab === 'dashboard') { container.innerHTML = renderDashboardTab(); setTimeout(addMapPins, 50); refreshLiveData(); refreshAPIStatus(); }
+            else if (currentTab === 'alerts') container.innerHTML = renderAlertsTab();
+            else if (currentTab === 'ml') {
+                container.innerHTML = renderMLInsightsTab(); refreshAPIStatus();
+            } else if (currentTab === 'authority') {
+                container.innerHTML = renderAuthorityAlertsTab();
+            } else if (currentTab === 'comms') {
+
+                container.innerHTML = renderCommsTab();
+            }
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => { tab.addEventListener('click', () => { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); tab.classList.add('active'); currentTab = tab.dataset.tab; render(); }); });
+        const roleSelector = document.getElementById('roleSelector');
+        if (roleSelector) roleSelector.addEventListener('change', () => { if (currentTab === 'alerts') render(); });
+
+        checkExistingLogin();
+        setInterval(() => { if (document.getElementById('liveDataDisplay')) refreshLiveData(); if (document.getElementById('apiStatusDisplay')) refreshAPIStatus(); }, 30000);
+
+
+        // ============ AUTHORITY ALERT SYSTEM ============
+        // This simulates alerts being sent to responsible authorities
+        // with acknowledgment tracking, escalation, and resolution verification
+
+        let activeAlerts = [];
+        let escalationIntervals = [];
+
+        // Authority contact database (simulated)
+        const authorityDatabase = {
+            // Flooding alerts go to:
+            flooding: [
+                { name: "NEMA (National Emergency)", level: "Federal", phone: "+234 700 2255 6362", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "SEMA (State Emergency)", level: "State", phone: "+234 802 345 6789", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "LGA Chairman", level: "Local", phone: "+234 803 456 7890", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ],
+            // Extreme heat alerts go to:
+            extremeHeat: [
+                { name: "Ministry of Health", level: "State", phone: "+234 804 567 8901", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "Ministry of Education", level: "State", phone: "+234 805 678 9012", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ],
+            // Unsafe water alerts go to:
+            unsafeWater: [
+                { name: "Water Resources Ministry", level: "State", phone: "+234 806 789 0123", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "Local WASH Unit", level: "Local", phone: "+234 807 890 1234", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ],
+            // Diarrhea outbreaks go to:
+            diarrhea: [
+                { name: "State Epidemiologist", level: "State", phone: "+234 808 901 2345", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "NCDC", level: "Federal", phone: "+234 809 012 3456", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "WHO Nigeria", level: "International", phone: "+234 810 123 4567", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ],
+            // Malaria increases go to:
+            malaria: [
+                { name: "National Malaria Elimination Programme", level: "Federal", phone: "+234 811 234 5678", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "State Health Ministry", level: "State", phone: "+234 812 345 6789", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ],
+            // School absenteeism goes to:
+            absenteeism: [
+                { name: "State Ministry of Education", level: "State", phone: "+234 813 456 7890", acknowledged: false, escalated: false, acknowledgedAt: null },
+                { name: "SUBEB", level: "State", phone: "+234 814 567 8901", acknowledged: false, escalated: false, acknowledgedAt: null }
+            ]
+        };
+
+        // Map issue types to authority keys
+        const issueToAuthorityKey = {
+            flooding: 'flooding',
+            extremeHeat: 'extremeHeat',
+            unsafeWater: 'unsafeWater',
+            diarrhea: 'diarrhea',
+            malaria: 'malaria',
+            absenteeism: 'absenteeism'
+        };
+
+        // Generate a new alert when report is submitted
+        function generateAuthorityAlert(report, riskScore, riskLevel) {
+            const alertId = Date.now();
+            const alert = {
+                id: alertId,
+                reportId: report.id,
+                location: report.location,
+                timestamp: new Date().toISOString(),
+                riskScore: riskScore,
+                riskLevel: riskLevel,
+                issues: Object.keys(report.issues).filter(key => report.issues[key] === true),
+                authorities: [],
+                status: 'active',
+                communityVerified: false
+            };
+
+            // For each issue in the report, add the relevant authorities
+            alert.issues.forEach(issue => {
+                const key = issueToAuthorityKey[issue];
+                if (key && authorityDatabase[key]) {
+                    const authoritiesForIssue = authorityDatabase[key].map(auth => ({
+                        ...auth,
+                        acknowledged: false,
+                        acknowledgedAt: null,
+                        escalated: false,
+                        escalatedAt: null,
+                        issue: issue
+                    }));
+                    alert.authorities.push(...authoritiesForIssue);
+                }
+            });
+
+            // Remove duplicates (if same authority appears for multiple issues)
+            const uniqueAuth = [];
+            const authNames = new Set();
+            alert.authorities.forEach(auth => {
+                if (!authNames.has(auth.name)) {
+                    authNames.add(auth.name);
+                    uniqueAuth.push(auth);
+                }
+            });
+            alert.authorities = uniqueAuth;
+
+            activeAlerts.unshift(alert);
+
+            // Save to localStorage
+            saveAuthorityAlerts();
+
+            // Start escalation timer for this alert
+            startEscalationTimer(alert);
+
+            // Show simulated alert notification
+            showAuthorityAlertNotification(alert);
+
+            return alert;
+        }
+
+        // Start escalation timer (simulated)
+        function startEscalationTimer(alert) {
+            // In simulation, we'll check every 10 seconds for demo purposes
+            // In production, this would be 15-30 minutes
+            const interval = setInterval(() => {
+                const currentAlert = activeAlerts.find(a => a.id === alert.id);
+                if (!currentAlert) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                // Check if any authorities haven't acknowledged
+                const unacknowledged = currentAlert.authorities.filter(a => !a.acknowledged);
+
+                if (unacknowledged.length > 0 && !currentAlert.escalated) {
+                    // Simulate escalation after 30 seconds (demo) / 15 minutes (production)
+                    const alertAge = (Date.now() - new Date(currentAlert.timestamp).getTime()) / 1000;
+
+                    if (alertAge > 30) { // 30 seconds for demo
+                        escalateAlert(currentAlert, unacknowledged);
+                    }
+                }
+
+                // Refresh UI if on authority tab
+                if (currentTab === 'authority') {
+                    renderAuthorityTab();
+                }
+            }, 5000); // Check every 5 seconds
+
+            escalationIntervals.push(interval);
+        }
+
+        // Escalate an alert to higher authorities
+        function escalateAlert(alert, unacknowledgedAuthorities) {
+            alert.escalated = true;
+            alert.escalatedAt = new Date().toISOString();
+
+            unacknowledgedAuthorities.forEach(auth => {
+                auth.escalated = true;
+                auth.escalatedAt = new Date().toISOString();
+            });
+
+            saveAuthorityAlerts();
+
+            // Show escalation notification
+            const escalationMsg = `⚠️ ESCALATION TRIGGERED\n\nAlert #${alert.id} from ${alert.location} has not been acknowledged.\n\nUnacknowledged authorities:\n${unacknowledgedAuthorities.map(a => `• ${a.name} (${a.level})`).join('\n')}\n\nEscalated to next level: Federal Authorities notified.\n\n⚠️ Demo simulation. Production would call emergency hotlines.`;
+            window.alert(escalationMsg);
+
+            // Refresh UI
+            if (currentTab === 'authority') {
+                renderAuthorityTab();
+            }
+        }
+
+        // Simulate authority acknowledgment
+        window.acknowledgeAlert = function (alertId, authorityName) {
+            const currentAlert = activeAlerts.find(a => a.id === alertId);
+            if (!currentAlert) return;
+
+            const authority = currentAlert.authorities.find(a => a.name === authorityName);
+            if (!authority) return;
+
+            authority.acknowledged = true;
+            authority.acknowledgedAt = new Date().toISOString();
+
+            saveAuthorityAlerts();
+
+            window.alert(`✅ ACKNOWLEDGMENT RECORDED\n\n${authorityName} has acknowledged alert #${alertId} from ${currentAlert.location}.\n\nResponse time: ${Math.floor((Date.now() - new Date(currentAlert.timestamp).getTime()) / 1000)} seconds\n\n⚠️ Demo simulation. Production would trigger response team dispatch.`);
+
+            // Refresh UI
+            if (currentTab === 'authority') {
+                renderAuthorityTab();
+            }
+
+            // Check if all authorities have acknowledged
+            const allAcknowledged = currentAlert.authorities.every(a => a.acknowledged);
+            if (allAcknowledged && !currentAlert.resolved) {
+                currentAlert.resolved = true;
+                currentAlert.resolvedAt = new Date().toISOString();
+                saveAuthorityAlerts();
+                window.alert(`✅ ALERT RESOLVED\n\nAll authorities have acknowledged alert #${currentAlert.id}.\n\nResponse complete. Community verification pending.`);
+            }
+        };
+
+        // Community verification of resolution
+        window.verifyResolution = function (alertId) {
+            const currentAlert = activeAlerts.find(a => a.id === alertId);
+            if (!currentAlert) return;
+
+            if (currentAlert.communityVerified) {
+                window.alert("Resolution already verified by community.");
+                return;
+            }
+
+            const verified = window.confirm(`🔍 COMMUNITY VERIFICATION\n\nHas the issue in ${currentAlert.location} been resolved?\n\nConfirm that:\n• Children are safe\n• Authorities took action\n• The situation has improved\n\n⚠️ Demo simulation. Production would include photo evidence and GPS tagging.`);
+
+            if (verified) {
+                currentAlert.communityVerified = true;
+                currentAlert.communityVerifiedAt = new Date().toISOString();
+                saveAuthorityAlerts();
+                window.alert(`✅ RESOLUTION VERIFIED\n\nCommunity confirms issue in ${currentAlert.location} has been resolved.\n\nAlert #${currentAlert.id} is now CLOSED.\n\nTotal response time: ${Math.floor((Date.now() - new Date(currentAlert.timestamp).getTime()) / 60)} minutes\n\n⚠️ Demo simulation. Production would generate performance reports.`);
+
+                if (currentTab === 'authority') {
+                    renderAuthorityTab();
+                }
+            }
+        };
+
+        // Save authority alerts to localStorage
+        function saveAuthorityAlerts() {
+            localStorage.setItem('childshield_authority_alerts', JSON.stringify(activeAlerts));
+        }
+
+        // Load authority alerts from localStorage
+        function loadAuthorityAlerts() {
+            const saved = localStorage.getItem('childshield_authority_alerts');
+            if (saved) {
+                activeAlerts = JSON.parse(saved);
+            }
+        }
+
+        // Show simulated alert notification
+        function showAuthorityAlertNotification(alert) {
+            const notificationDiv = document.createElement('div');
+            notificationDiv.style.cssText = `
+        position: fixed; top: 80px; right: 20px; background: #dc2626; color: white;
+        padding: 16px 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        z-index: 1000; animation: slideIn 0.3s; max-width: 350px; font-size: 13px;
+    `;
+            notificationDiv.innerHTML = `
+        <div style="display: flex; gap: 12px;">
+            <i class="fas fa-bell" style="font-size: 20px;"></i>
+            <div>
+                <strong>🚨 ALERT SENT TO AUTHORITIES</strong>
+                <div style="font-size: 11px; margin-top: 5px;">
+                    ${alert.location} - Risk: ${alert.riskLevel} (${alert.riskScore}/100)
+                </div>
+                <div style="font-size: 10px; margin-top: 3px; opacity: 0.8;">
+                    Notified: ${alert.authorities.slice(0, 3).map(a => a.name).join(', ')}${alert.authorities.length > 3 ? ' + more' : ''}
+                </div>
+                <div style="font-size: 10px; margin-top: 5px; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 8px;">
+                    ⚠️ Demo simulation — real system would call/dispatch authorities
+                </div>
+            </div>
+        </div>
+    `;
+            document.body.appendChild(notificationDiv);
+            setTimeout(() => notificationDiv.remove(), 5000);
+        }
+
+        // Render Authority Alert Dashboard Tab
+        function renderAuthorityTab() {
+            try {
+                const unresolvedAlerts = activeAlerts.filter(a => !a.communityVerified);
+                const resolvedAlerts = activeAlerts.filter(a => a.communityVerified);
+                const totalAuthoritiesNotified = activeAlerts.reduce((sum, a) => sum + a.authorities.length, 0);
+                const acknowledgmentRate = totalAuthoritiesNotified > 0
+                    ? Math.round((activeAlerts.reduce((sum, a) => sum + a.authorities.filter(auth => auth.acknowledged).length, 0) / totalAuthoritiesNotified) * 100)
+                    : 0;
+
+                return `
+        <div class="card authority-panel">
+            <div class="authority-header">
+                <div>
+                    <div class="card-title" style="color: white; border-left-color: #f59e0b;">
+                        <i class="fas fa-building"></i> Authority Alert Chain
+                    </div>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 8px;">
+                        Every report triggers alerts to responsible authorities. Unacknowledged alerts escalate automatically.
+                    </p>
+                </div>
+                <div class="authority-badge">
+                    <i class="fas fa-chart-line"></i> ${acknowledgmentRate}% Response Rate
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-chart-simple"></i> Accountability Metrics
+            </div>
+            <div class="kpi-grid" style="margin-bottom: 0;">
+                <div class="kpi-card">
+                    <div class="kpi-value">${activeAlerts.length}</div>
+                    <div class="kpi-label">Total Alerts Sent</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">${unresolvedAlerts.length}</div>
+                    <div class="kpi-label">Active Alerts</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">${resolvedAlerts.length}</div>
+                    <div class="kpi-label">Resolved</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">${totalAuthoritiesNotified}</div>
+                    <div class="kpi-label">Authorities Notified</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-diagram-project"></i> Alert Escalation Flow
+            </div>
+            <div class="alert-flow-diagram">
+                <span class="flow-step">📝 Report Submitted</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-step">🏢 Authorities Notified</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-step">⏳ 15-30 min Wait</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-step">⚠️ Escalate if No Response</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-step">✅ Acknowledgment</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-step">🔍 Community Verification</span>
+            </div>
+            <div class="info-note">
+                <i class="fas fa-clock"></i> Demo: Escalation triggers after 30 seconds. Production: 15-30 minutes.
+            </div>
+        </div>
+        
+        ${unresolvedAlerts.length > 0 ? `
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-bell-ring"></i> Active Alerts (Requiring Action)
+                </div>
+                ${unresolvedAlerts.map(alert => `
+                    <div class="authority-card ${alert.escalated ? 'escalated' : 'pending'}" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <strong style="font-size: 16px;">📍 ${alert.location}</strong>
+                                <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+                                    Reported: ${new Date(alert.timestamp).toLocaleString()}
+                                </div>
+                                <div style="margin-top: 8px;">
+                                    <span class="risk-badge risk-${alert.riskLevel.toLowerCase()}">${alert.riskLevel} Risk (${alert.riskScore}/100)</span>
+                                    ${alert.escalated ? '<span class="escalation-timer critical" style="margin-left: 8px;"><i class="fas fa-arrow-up"></i> ESCALATED</span>' : '<span class="escalation-timer"><i class="fas fa-hourglass-half"></i> Awaiting acknowledgment</span>'}
+                                </div>
+                            </div>
+                            ${!alert.communityVerified && alert.authorities.every(a => a.acknowledged) ? `
+                                <button class="btn-verify" onclick="verifyResolution(${alert.id})">
+                                    <i class="fas fa-check-circle"></i> Verify Resolution
+                                </button>
+                            ` : ''}
+                        </div>
+                        
+                        <div style="margin-top: 16px;">
+                            <strong><i class="fas fa-building"></i> Authorities Notified:</strong>
+                            <div style="margin-top: 8px;">
+                                ${alert.authorities.map(auth => `
+                                    <div class="authority-card ${auth.acknowledged ? 'acknowledged' : ''}" style="margin-bottom: 8px; padding: 12px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                                            <div>
+                                                <strong>${auth.name}</strong>
+                                                <span style="font-size: 10px; background: #334155; padding: 2px 8px; border-radius: 20px; margin-left: 8px;">${auth.level}</span>
+                                                ${auth.escalated ? '<span style="font-size: 10px; background: #dc2626; padding: 2px 8px; border-radius: 20px; margin-left: 4px;">Escalated</span>' : ''}
+                                            </div>
+                                            <div>
+                                                ${!auth.acknowledged ? `
+                                                    <button class="btn-acknowledge" onclick='acknowledgeAlert(${alert.id}, ${JSON.stringify(auth.name)})'>
+                                                        <i class="fas fa-check"></i> Acknowledge (Demo)
+                                                    </button>
+                                                ` : `
+                                                    <span style="color: #22c55e; font-size: 12px;">
+                                                        <i class="fas fa-check-circle"></i> Acknowledged ${auth.acknowledgedAt ? new Date(auth.acknowledgedAt).toLocaleTimeString() : ''}
+                                                    </span>
+                                                `}
+                                            </div>
+                                        </div>
+                                        <div style="font-size: 11px; color: #64748b; margin-top: 6px;">
+                                            📞 ${auth.phone}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="info-note" style="margin-top: 12px; text-align: left;">
+                            <i class="fas fa-flask"></i> Demo simulation. Production would include actual phone calls, SMS, and API integration.
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        ` : ''}
+        
+        ${resolvedAlerts.length > 0 ? `
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-check-circle"></i> Resolved Alerts
+                </div>
+                ${resolvedAlerts.slice(0, 5).map(alert => `
+                    <div class="location-item" style="border-left: 3px solid #22c55e; margin-bottom: 8px;">
+                        <div>
+                            <strong>📍 ${alert.location}</strong>
+                            <div style="font-size: 11px; color: #64748b;">
+                                Closed: ${new Date(alert.communityVerifiedAt).toLocaleString()}
+                            </div>
+                        </div>
+                        <span class="resolution-badge"><i class="fas fa-check"></i> Verified by Community</span>
+                    </div>
+                `).join('')}
+            </div>
+        ` : ''}
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-info-circle"></i> How Authority Alerting Works
+            </div>
+            <div style="font-size: 13px; line-height: 1.6;">
+                <p><strong>1. Automatic Authority Mapping:</strong> Each report type is automatically routed to the responsible government agencies:</p>
+                <ul style="margin: 8px 0 16px 20px;">
+                    <li><strong>Flooding</strong> → NEMA, SEMA, LGA Chairman</li>
+                    <li><strong>Extreme Heat</strong> → Ministries of Health & Education</li>
+                    <li><strong>Unsafe Water</strong> → Water Resources Ministry, WASH Unit</li>
+                    <li><strong>Diarrhea Outbreak</strong> → State Epidemiologist, NCDC, WHO</li>
+                    <li><strong>Malaria Increase</strong> → National Malaria Programme, State Health</li>
+                    <li><strong>School Absenteeism</strong> → Education Ministry, SUBEB</li>
+                </ul>
+                <p><strong>2. Escalation Protocol:</strong> If an authority does not acknowledge within 15-30 minutes, the alert automatically escalates to the next level (Local → State → Federal → International).</p>
+                <p><strong>3. Accountability Tracking:</strong> Every acknowledgment is timestamped. Response rates are calculated. Unresponsive agencies are flagged.</p>
+                <p><strong>4. Community Verification:</strong> After authorities report resolution, community members must verify that the issue was actually addressed — closing the accountability loop.</p>
+            </div>
+            <div class="info-note">
+                <i class="fas fa-flask"></i> This is a demo simulation. Production includes actual API integration with government systems, automated phone calls, and SMS delivery tracking.
+            </div>
+        </div>
+    `;
+            } catch (e) {
+                console.error(e);
+                return `<div class="card"><div class="card-title" style="color:red"><i class="fas fa-exclamation-triangle"></i> Error Rendering Tab</div><p>There was an error loading this tab, likely due to corrupted or outdated data in your browser's local storage.</p><pre style="background:#f1f5f9; padding:10px; border-radius:8px; margin:10px 0; overflow-x:auto; font-size:12px;">${e.stack}</pre><button onclick="localStorage.removeItem('childshield_authority_alerts'); location.reload()" style="background:#dc2626;"><i class="fas fa-trash"></i> Clear Authority Data & Reload</button></div>`;
+            }
+        }
+
+        // Render Authority Alerts Tab
+        function renderAuthorityAlertsTab() {
+            return renderAuthorityTab();
+        }
+
+        render();
+
+        // ============ SMS & WHATSAPP SIMULATION ============
+        // Data structures for messaging simulation
+        let smsConversations = [];
+        let whatsappConversations = [];
+        let messageIdCounter = 1;
+
+        // Recipient database for PHC workers
+        const recipientDatabase = {
+            communityVolunteers: [
+                { id: 1, name: "Amina Bello", phone: "+234 801 234 5678", village: "Abuja North", lastActive: "2 min ago", role: "Lead Volunteer" },
+                { id: 2, name: "Chidi Okonkwo", phone: "+234 802 345 6789", village: "Abuja South", lastActive: "15 min ago", role: "Volunteer" },
+                { id: 3, name: "Fatima Yusuf", phone: "+234 803 456 7890", village: "Gwagwalada", lastActive: "1 hour ago", role: "Health Educator" },
+                { id: 4, name: "Emeka Okafor", phone: "+234 804 567 8901", village: "Kuje", lastActive: "30 min ago", role: "Community Liaison" },
+                { id: 5, name: "Hauwa Ibrahim", phone: "+234 805 678 9012", village: "Bwari", lastActive: "5 min ago", role: "Lead Volunteer" }
+            ],
+            schoolReps: [
+                { id: 6, name: "Mr. Adebayo", phone: "+234 806 789 0123", school: "Government Secondary School, Abuja", lastActive: "1 hour ago" },
+                { id: 7, name: "Mrs. Okafor", phone: "+234 807 890 1234", school: "Model Primary School, Lagos", lastActive: "20 min ago" },
+                { id: 8, name: "Mallam Musa", phone: "+234 808 901 2345", school: "Islamiya School, Kano", lastActive: "45 min ago" }
+            ],
+            phcWorkers: [
+                { id: 9, name: "Dr. Ngozi Eze", phone: "+234 809 012 3456", phc: "Abuja PHC", lastActive: "Just now" },
+                { id: 10, name: "Nurse Grace", phone: "+234 810 123 4567", phc: "Lagos Island PHC", lastActive: "10 min ago" }
+            ]
+        };
+
+        // Message templates for quick replies
+        const messageTemplates = {
+            flood: {
+                title: "🌊 Flood Alert",
+                message: "FLOOD ALERT: Heavy rainfall expected in your area. Please move children to higher ground. Ensure ORS is available at PHC. Report any casualties immediately.",
+                action: "Evacuation & ORS preparation"
+            },
+            heat: {
+                title: "🔥 Heat Alert",
+                message: "HEAT ALERT: Temperatures expected to reach 40°C today. Keep children hydrated. Avoid outdoor activities between 12 PM - 3 PM. Watch for signs of heatstroke.",
+                action: "Hydration & shade"
+            },
+            water: {
+                title: "💧 Water Safety",
+                message: "WATER SAFETY NOTICE: Unsafe water reported in your community. Boil all drinking water for at least 10 minutes. Distribute purification tablets. Report waterborne illness cases.",
+                action: "Water treatment"
+            },
+            diarrhea: {
+                title: "🦠 Disease Alert",
+                message: "DISEASE ALERT: Increased diarrhea cases reported. Ensure ORS is available. Promote handwashing. Report severe cases to PHC immediately. Prevent dehydration.",
+                action: "ORS distribution & hygiene"
+            },
+            malaria: {
+                title: "🦟 Malaria Alert",
+                message: "MALARIA ALERT: Increased mosquito activity detected. Use bed nets. Clear standing water. Seek testing for fever. ACT treatment available at PHC.",
+                action: "Bed nets & testing"
+            },
+            absenteeism: {
+                title: "📚 School Alert",
+                message: "SCHOOL ALERT: Increased absenteeism reported. Please check on absent children. Coordinate with parents. Report any health concerns to PHC.",
+                action: "Student welfare check"
+            }
+        };
+
+        // Load saved conversations from localStorage
+        function loadConversations() {
+            const savedSMS = localStorage.getItem('childshield_sms_conversations');
+            const savedWhatsApp = localStorage.getItem('childshield_whatsapp_conversations');
+            if (savedSMS) smsConversations = JSON.parse(savedSMS);
+            if (savedWhatsApp) whatsappConversations = JSON.parse(savedWhatsApp);
+        }
+
+        // Save conversations to localStorage
+        function saveConversations() {
+            localStorage.setItem('childshield_sms_conversations', JSON.stringify(smsConversations));
+            localStorage.setItem('childshield_whatsapp_conversations', JSON.stringify(whatsappConversations));
+        }
+
+        // Send SMS simulation
+        window.sendSimulatedSMS = function (recipientType, message, templateKey = null) {
+            const recipients = recipientType === 'community'
+                ? recipientDatabase.communityVolunteers
+                : recipientType === 'school'
+                    ? recipientDatabase.schoolReps
+                    : recipientDatabase.phcWorkers;
+
+            const timestamp = new Date();
+            const messageId = messageIdCounter++;
+
+            // Create sent message record
+            const sentMessage = {
+                id: messageId,
+                from: "PHC Worker (Demo)",
+                to: recipients.map(r => ({ name: r.name, phone: r.phone, type: recipientType })),
+                message: message,
+                timestamp: timestamp.toISOString(),
+                status: "sent",
+                delivered: false,
+                read: false,
+                templateUsed: templateKey
+            };
+
+            // Add to conversation history
+            smsConversations.unshift(sentMessage);
+            saveConversations();
+
+            // Simulate delivery after 2 seconds
+            setTimeout(() => {
+                sentMessage.status = "delivered";
+                sentMessage.delivered = true;
+                sentMessage.deliveredAt = new Date().toISOString();
+                saveConversations();
+
+                // Show delivery notification
+                const deliveryNote = document.createElement('div');
+                deliveryNote.style.cssText = 'position: fixed; bottom: 20px; left: 20px; background: #22c55e; color: white; padding: 8px 16px; border-radius: 30px; font-size: 11px; z-index: 1000; animation: fadeInUp 0.3s;';
+                deliveryNote.innerHTML = `<i class="fas fa-check-circle"></i> SMS delivered to ${recipients.length} recipients`;
+                document.body.appendChild(deliveryNote);
+                setTimeout(() => deliveryNote.remove(), 3000);
+
+                if (currentTab === 'comms') renderCommsTab();
+            }, 2000);
+
+            // Simulate read receipt after 5 seconds
+            setTimeout(() => {
+                sentMessage.read = true;
+                sentMessage.readAt = new Date().toISOString();
+                saveConversations();
+                if (currentTab === 'comms') renderCommsTab();
+            }, 5000);
+
+            // Show sending confirmation
+            alert('📱 SMS SIMULATION\n\n✅ Message sent to ' + recipients.length + ' recipients:\n' + recipients.map(r => r.name).join('\n') + '\n\nMessage: "' + message + '"\n\n⚠️ Demo simulation. Production would use Twilio API with delivery tracking, read receipts, and two-way communication.');
+
+            if (currentTab === 'comms') renderCommsTab();
+        };
+
+        // Send WhatsApp simulation
+        window.sendSimulatedWhatsApp = function (recipientType, message, templateKey = null) {
+            let recipients = [];
+            let groupName = "";
+
+            if (recipientType === 'community') {
+                recipients = recipientDatabase.communityVolunteers;
+                groupName = "Community Health Volunteers Group";
+            } else if (recipientType === 'school') {
+                recipients = recipientDatabase.schoolReps;
+                groupName = "School Health Coordinators Group";
+            } else {
+                recipients = recipientDatabase.phcWorkers;
+                groupName = "PHC Emergency Response Group";
+            }
+
+            const timestamp = new Date();
+            const messageId = messageIdCounter++;
+
+            const whatsappMessage = {
+                id: messageId,
+                from: "PHC Worker (Demo)",
+                group: groupName,
+                recipients: recipients.map(r => r.name),
+                message: message,
+                timestamp: timestamp.toISOString(),
+                status: "sent",
+                delivered: false,
+                readCount: 0,
+                templateUsed: templateKey
+            };
+
+            whatsappConversations.unshift(whatsappMessage);
+            saveConversations();
+
+            // Simulate delivery
+            setTimeout(() => {
+                whatsappMessage.status = "delivered";
+                whatsappMessage.delivered = true;
+                whatsappMessage.deliveredAt = new Date().toISOString();
+                saveConversations();
+
+                const deliveryNote = document.createElement('div');
+                deliveryNote.style.cssText = "position: fixed; bottom: 20px; left: 20px; background: #25D366; color: white; padding: 8px 16px; border-radius: 30px; font-size: 11px; z-index: 1000; animation: fadeInUp 0.3s;";
+                deliveryNote.innerHTML = `<i class="fab fa-whatsapp"></i> WhatsApp delivered to ${groupName}`;
+                document.body.appendChild(deliveryNote);
+                setTimeout(() => deliveryNote.remove(), 3000);
+
+                if (currentTab === 'comms') renderCommsTab();
+            }, 1500);
+
+            // Simulate read receipts
+            setTimeout(() => {
+                whatsappMessage.readCount = Math.floor(recipients.length * (0.6 + Math.random() * 0.3));
+                whatsappMessage.read = true;
+                whatsappMessage.readAt = new Date().toISOString();
+                saveConversations();
+                if (currentTab === 'comms') renderCommsTab();
+            }, 4000);
+
+            alert('💬 WHATSAPP SIMULATION\n\n✅ Message sent to ' + groupName + ' (' + recipients.length + ' members)\n\nMessage: "' + message + '"\n\n⚠️ Demo simulation. Production would use Meta WhatsApp Business API with template messages, interactive buttons, and media sharing.');
+
+            if (currentTab === 'comms') renderCommsTab();
+        };
+
+        // Send to all recipients (broadcast)
+        window.sendBroadcastAlert = function (message, templateKey = null) {
+            const allRecipients = [
+                ...recipientDatabase.communityVolunteers,
+                ...recipientDatabase.schoolReps,
+                ...recipientDatabase.phcWorkers
+            ];
+
+            const timestamp = new Date();
+            const broadcastId = messageIdCounter++;
+
+            const broadcastRecord = {
+                id: broadcastId,
+                type: "BROADCAST",
+                recipients: allRecipients.length,
+                message: message,
+                timestamp: timestamp.toISOString(),
+                smsDelivered: false,
+                whatsappDelivered: false
+            };
+
+            // Simulate SMS broadcast
+            setTimeout(() => {
+                broadcastRecord.smsDelivered = true;
+                broadcastRecord.smsDeliveredAt = new Date().toISOString();
+                saveBroadcastHistory(broadcastRecord);
+                if (currentTab === 'comms') renderCommsTab();
+            }, 2000);
+
+            // Simulate WhatsApp broadcast
+            setTimeout(() => {
+                broadcastRecord.whatsappDelivered = true;
+                broadcastRecord.whatsappDeliveredAt = new Date().toISOString();
+                saveBroadcastHistory(broadcastRecord);
+                if (currentTab === 'comms') renderCommsTab();
+            }, 3000);
+
+            alert(`BROADCAST ALERT\n\nMessage sent to ${allRecipients.length} recipients via SMS and WhatsApp\n\nRecipients include:\n- ${recipientDatabase.communityVolunteers.length} Community Volunteers\n- ${recipientDatabase.schoolReps.length} School Representatives\n- ${recipientDatabase.phcWorkers.length} PHC Workers\n\nDemo simulation. Production would include delivery tracking, response collection, and analytics.`);
+
+            if (currentTab === 'comms') renderCommsTab();
+        };
+
+        // Broadcast history storage
+        let broadcastHistory = [];
+
+        function saveBroadcastHistory(broadcast) {
+            broadcastHistory.unshift(broadcast);
+            localStorage.setItem('childshield_broadcasts', JSON.stringify(broadcastHistory));
+        }
+
+        function loadBroadcastHistory() {
+            const saved = localStorage.getItem('childshield_broadcasts');
+            if (saved) broadcastHistory = JSON.parse(saved);
+        }
+
+        // Use template message
+        window.useTemplate = function (templateKey, channel, recipientType) {
+            const template = messageTemplates[templateKey];
+            if (!template) return;
+
+            const confirmMsg = confirm(`📨 Send ${channel === 'sms' ? 'SMS' : 'WhatsApp'} using template:\n\nTitle: ${template.title}\nMessage: ${template.message}\n\nAction: ${template.action}\n\nProceed?`);
+
+            if (confirmMsg) {
+                if (channel === 'sms') {
+                    sendSimulatedSMS(recipientType, template.message, templateKey);
+                } else {
+                    sendSimulatedWhatsApp(recipientType, template.message, templateKey);
+                }
+            }
+        };
+
+        // Get delivery statistics
+        function getDeliveryStats() {
+            const totalSMS = smsConversations.length;
+            const deliveredSMS = smsConversations.filter(m => m.delivered).length;
+            const readSMS = smsConversations.filter(m => m.read).length;
+
+            const totalWhatsApp = whatsappConversations.length;
+            const deliveredWhatsApp = whatsappConversations.filter(m => m.delivered).length;
+
+            return {
+                sms: { total: totalSMS, delivered: deliveredSMS, read: readSMS, rate: totalSMS ? Math.round((deliveredSMS / totalSMS) * 100) : 0 },
+                whatsapp: { total: totalWhatsApp, delivered: deliveredWhatsApp, rate: totalWhatsApp ? Math.round((deliveredWhatsApp / totalWhatsApp) * 100) : 0 }
+            };
+        }
+
+        // Render Communications Tab (SMS + WhatsApp)
+        function renderCommsTab() {
+            try {
+                const stats = getDeliveryStats();
+
+                return `
+        <div class="comms-panel">
+            <div class="comms-header">
+                <div>
+                    <div class="card-title" style="margin-bottom: 0;">
+                        <i class="fas fa-phone-alt"></i> PHC Communication Center
+                    </div>
+                    <p style="font-size: 12px; color: #334155; margin-top: 8px;">
+                        Send alerts to community volunteers, schools, and other PHC workers via SMS and WhatsApp
+                    </p>
+                </div>
+                <div>
+                    <span class="sms-badge"><i class="fas fa-sms"></i> SMS: ${stats.sms.rate}% delivered</span>
+                    <span class="whatsapp-badge" style="margin-left: 8px;"><i class="fab fa-whatsapp"></i> WhatsApp: ${stats.whatsapp.rate}% delivered</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Message Templates -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-bolt"></i> Quick Message Templates
+                <span class="simulated-badge">One-click alerts</span>
+            </div>
+            <div class="message-templates">
+                <button class="template-btn" onclick="useTemplate('flood', 'sms', 'community')">🌊 Flood Alert</button>
+                <button class="template-btn" onclick="useTemplate('heat', 'sms', 'community')">🔥 Heat Alert</button>
+                <button class="template-btn" onclick="useTemplate('water', 'sms', 'community')">💧 Water Safety</button>
+                <button class="template-btn" onclick="useTemplate('diarrhea', 'sms', 'community')">🦠 Disease Alert</button>
+                <button class="template-btn" onclick="useTemplate('malaria', 'sms', 'community')">🦟 Malaria Alert</button>
+                <button class="template-btn" onclick="useTemplate('absenteeism', 'sms', 'school')">📚 School Alert</button>
+            </div>
+            <div class="info-note">
+                <i class="fas fa-flask"></i> Click any template to send via SMS. Templates include pre-written, approved health messages.
+            </div>
+        </div>
+        
+        <!-- SMS Send Panel -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-sms"></i> Send SMS Alert
+                <span class="sms-badge">Twilio Simulation</span>
+            </div>
+            
+            <div class="recipient-selector">
+                <label style="font-weight: 600; margin-bottom: 8px; display: block;">📱 Select Recipients:</label>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="sendSimulatedSMS('community', '⚠️ Health Alert: Please check on children in your area. Report any concerns to PHC.')" style="background: #2563eb; width: auto; padding: 8px 16px;">👥 Community Volunteers (5)</button>
+                    <button onclick="sendSimulatedSMS('school', '⚠️ School Alert: Monitor student attendance. Report any health issues to PHC.')" style="background: #2563eb; width: auto; padding: 8px 16px;">🏫 School Reps (3)</button>
+                    <button onclick="sendSimulatedSMS('phc', '⚠️ PHC Alert: Prepare for potential case surge. Ensure supplies available.')" style="background: #2563eb; width: auto; padding: 8px 16px;">🏥 PHC Workers (2)</button>
+                </div>
+            </div>
+            
+            <label style="font-weight: 600; margin: 12px 0 8px;">✏️ Custom Message:</label>
+            <textarea id="customSMSMessage" rows="3" style="margin-bottom: 12px;" placeholder="Type your custom SMS alert here...">⚠️ HEALTH ALERT: Please take necessary precautions to protect children in your community. Contact PHC for support.</textarea>
+            
+            <div style="display: flex; gap: 10px;">
+                <button onclick="sendSimulatedSMS('community', document.getElementById('customSMSMessage').value)" style="background: #2563eb;">
+                    <i class="fas fa-paper-plane"></i> Send Custom SMS
+                </button>
+                <button onclick="sendBroadcastAlert(document.getElementById('customSMSMessage').value)" style="background: #dc2626;">
+                    <i class="fas fa-broadcast-tower"></i> Broadcast to All
+                </button>
+            </div>
+            
+            <div class="broadcast-stats">
+                <span><i class="fas fa-chart-line"></i> Total SMS Sent: ${stats.sms.total}</span>
+                <span><i class="fas fa-check-circle"></i> Delivered: ${stats.sms.delivered}</span>
+                <span><i class="fas fa-eye"></i> Read: ${stats.sms.read}</span>
+            </div>
+        </div>
+        
+        <!-- WhatsApp Send Panel -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fab fa-whatsapp"></i> Send WhatsApp Alert
+                <span class="whatsapp-badge">Meta Business API Simulation</span>
+            </div>
+            
+            <div class="recipient-selector">
+                <label style="font-weight: 600; margin-bottom: 8px; display: block;">💬 Select WhatsApp Group:</label>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="sendSimulatedWhatsApp('community', '📢 COMMUNITY UPDATE: Please be aware of health risks. Keep children safe. Report emergencies to PHC.')" style="background: #25D366; width: auto; padding: 8px 16px;">👥 Community Group (5)</button>
+                    <button onclick="sendSimulatedWhatsApp('school', '📢 SCHOOL UPDATE: Monitor student health. Coordinate with parents. Report absences.')" style="background: #25D366; width: auto; padding: 8px 16px;">🏫 School Group (3)</button>
+                    <button onclick="sendSimulatedWhatsApp('phc', '📢 PHC UPDATE: Coordinate response. Share updates. Request supplies if needed.')" style="background: #25D366; width: auto; padding: 8px 16px;">🏥 PHC Group (2)</button>
+                </div>
+            </div>
+            
+            <label style="font-weight: 600; margin: 12px 0 8px;">✏️ Custom WhatsApp Message:</label>
+            <textarea id="customWhatsAppMessage" rows="3" style="margin-bottom: 12px;" placeholder="Type your custom WhatsApp message here...">📢 HEALTH UPDATE: Please take necessary precautions to protect children in our community. Stay safe and report concerns.</textarea>
+            
+            <button onclick="sendSimulatedWhatsApp('community', document.getElementById('customWhatsAppMessage').value)" style="background: #25D366;">
+                <i class="fab fa-whatsapp"></i> Send Custom WhatsApp
+            </button>
+            
+            <div class="broadcast-stats">
+                <span><i class="fas fa-chart-line"></i> Total WhatsApp Sent: ${stats.whatsapp.total}</span>
+                <span><i class="fas fa-check-circle"></i> Delivered: ${stats.whatsapp.delivered}</span>
+                <span><i class="fas fa-users"></i> Avg. Read Rate: ${stats.whatsapp.rate}%</span>
+            </div>
+        </div>
+        
+        <!-- Recent SMS Conversations -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-history"></i> Recent SMS Conversations
+                <span class="simulated-badge">Delivery tracking</span>
+            </div>
+            <div class="conversation-log">
+                ${smsConversations.slice(0, 5).map(msg => `
+                    <div class="message-bubble message-sent">
+                        <strong>📱 To: ${msg.to.length} recipients</strong>
+                        <div style="margin-top: 5px;">${msg.message.substring(0, 100)}${msg.message.length > 100 ? '...' : ''}</div>
+                        <div class="message-time">
+                            ${new Date(msg.timestamp).toLocaleTimeString()}
+                            ${msg.delivered ? '<span class="delivery-status delivered"><i class="fas fa-check-double"></i> Delivered</span>' : '<span class="delivery-status sent"><i class="fas fa-check"></i> Sent</span>'}
+                        </div>
+                    </div>
+                `).join('')}
+                ${smsConversations.length === 0 ? '<div class="info-note" style="margin: 0;">No SMS sent yet. Use the buttons above to send your first alert.</div>' : ''}
+            </div>
+        </div>
+        
+        <!-- Recent WhatsApp Conversations -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fab fa-whatsapp"></i> Recent WhatsApp Messages
+                <span class="simulated-badge">Group delivery</span>
+            </div>
+            <div class="conversation-log">
+                ${whatsappConversations.slice(0, 5).map(msg => `
+                    <div class="message-bubble message-sent" style="background: #25D366;">
+                        <strong>💬 To: ${msg.group}</strong>
+                        <div style="margin-top: 5px;">${msg.message.substring(0, 100)}${msg.message.length > 100 ? '...' : ''}</div>
+                        <div class="message-time">
+                            ${new Date(msg.timestamp).toLocaleTimeString()}
+                            ${msg.delivered ? `<span class="delivery-status delivered"><i class="fas fa-check-double"></i> Read by ${msg.readCount || 0}/${msg.recipients.length}</span>` : '<span class="delivery-status sent"><i class="fas fa-check"></i> Sent</span>'}
+                        </div>
+                    </div>
+                `).join('')}
+                ${whatsappConversations.length === 0 ? '<div class="info-note" style="margin: 0;">No WhatsApp messages sent yet. Use the buttons above to send your first alert.</div>' : ''}
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-info-circle"></i> How SMS & WhatsApp Work in Production
+            </div>
+            <div style="font-size: 13px; line-height: 1.6;">
+                <p><strong>📱 SMS (Twilio/Africa's Talking):</strong></p>
+                <ul style="margin: 8px 0 16px 20px;">
+                    <li>Two-way communication with delivery receipts</li>
+                    <li>Works on any phone (no smartphone required)</li>
+                    <li>Offline-capable (stores messages when no signal)</li>
+                    <li>Bulk messaging to community groups</li>
+                </ul>
+                <p><strong>💬 WhatsApp (Meta Business API):</strong></p>
+                <ul style="margin: 8px 0 16px 20px;">
+                    <li>Rich media (images, documents, location sharing)</li>
+                    <li>Interactive buttons for quick responses</li>
+                    <li>Read receipts and delivery tracking</li>
+                    <li>Template messages pre-approved for health alerts</li>
+                </ul>
+                <p><strong>⚠️ Demo Note:</strong> This is a simulation. Production would use actual APIs with real phone numbers, delivery tracking, and compliance with telecom regulations.</p>
+            </div>
+        </div>
+    `;
+            } catch (e) {
+                console.error(e);
+                return `<div class="card"><div class="card-title" style="color:red"><i class="fas fa-exclamation-triangle"></i> Error Rendering Tab</div><p>There was an error loading this tab, likely due to corrupted or outdated data in your browser's local storage.</p><pre style="background:#f1f5f9; padding:10px; border-radius:8px; margin:10px 0; overflow-x:auto; font-size:12px;">${e.stack}</pre><button onclick="localStorage.removeItem('childshield_sms_conversations'); localStorage.removeItem('childshield_whatsapp_conversations'); location.reload()" style="background:#dc2626;"><i class="fas fa-trash"></i> Clear Comms Data & Reload</button></div>`;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
